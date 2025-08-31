@@ -142,6 +142,13 @@ height = 62.0
 collision_layer = 2
 script = ExtResource("1_qlg0r")
 
+[node name="PickupArea" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("CapsuleShape2D_smehm")
+debug_color = Color(0.2, 1, 0.2, 0.3)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_dqkch")
 offset = Vector2(0, -38.65)

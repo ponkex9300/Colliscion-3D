@@ -8,6 +8,7 @@
 size = Vector2(56, 64)
 
 [node name="Door" type="Area2D"]
+collision_mask = 2
 script = ExtResource("1_uvdjg")
 closed_texture = ExtResource("1_hpvv5")
 open_texture = ExtResource("3_83dcw")

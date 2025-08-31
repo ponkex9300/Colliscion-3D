@@ -1,6 +1,5 @@
 extends Node2D
 
-# Referencia al AnimationPlayer
 @onready var animation_player = $AnimationPlayer
 @onready var activate_zone = $ActivateZone
 @onready var hitbox = $Hitbox

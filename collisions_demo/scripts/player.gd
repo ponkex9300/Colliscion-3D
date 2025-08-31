@@ -1,4 +1,6 @@
 extends CharacterBody2D
+signal health_changed(new_health)
+
 func _ready() -> void:
 	add_to_group("player")
 
@@ -45,18 +47,23 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 
+	if has_node("PickupArea"):
+		for area in $PickupArea.get_overlapping_areas():
+			if area.name == "Key":
+				if area.has_method("_on_body_entered"):
+					area._on_body_entered(self)
+
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	take_damage(1)
 
-# Función pública para recibir daño
 func take_damage(amount: int) -> void:
 	health -= amount
 	print("OUCH! Vida restante:", health)
+	emit_signal("health_changed", health)
 	if health <= 0:
 		_die()
 
-# Lógica de muerte del jugador
 func _die() -> void:
 	print("¡Has muerto!")
 	queue_free()
