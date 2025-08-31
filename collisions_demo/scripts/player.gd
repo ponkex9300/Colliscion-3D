@@ -1,4 +1,9 @@
 extends CharacterBody2D
+func _ready() -> void:
+	add_to_group("player")
+
+@export var max_health: int = 3
+var health: int = max_health
 
 # PROPERTIES
 @export var speed: float = 300.0
@@ -42,4 +47,16 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	print("OUCH!")
+	take_damage(1)
+
+# Función pública para recibir daño
+func take_damage(amount: int) -> void:
+	health -= amount
+	print("OUCH! Vida restante:", health)
+	if health <= 0:
+		_die()
+
+# Lógica de muerte del jugador
+func _die() -> void:
+	print("¡Has muerto!")
+	queue_free()

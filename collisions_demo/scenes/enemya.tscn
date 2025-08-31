@@ -134,3 +134,5 @@ debug_color = Color(0.714092, 0.483097, 0.0397373, 0.42)
 
 [connection signal="body_entered" from="ActivateZone" to="." method="_on_activate_zone_body_entered"]
 [connection signal="body_exited" from="ActivateZone" to="." method="_on_activate_zone_body_exited"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]

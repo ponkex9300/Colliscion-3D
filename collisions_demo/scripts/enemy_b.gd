@@ -1,4 +1,25 @@
+
 extends Node2D
+
+var vulnerable = false
+var health := 3
+func _on_hitbox_body_entered(body: Node) -> void:
+	if body.is_in_group("player"):
+		if vulnerable:
+			health -= 1
+			if health <= 0:
+				queue_free()
+			return
+		# No hacer daño al jugador si el enemigo es vulnerable
+
+func set_vulnerable(value: bool) -> void:
+	vulnerable = value
+	if vulnerable:
+		timer.stop()
+	else:
+		# Si el jugador está en el área de activación, reanudar disparos
+		if animation_player.current_animation == "Active":
+			timer.start()
 
 var rn = RandomNumberGenerator.new()
 const FireballScene = preload("res://scenes/fireball.tscn")
@@ -7,6 +28,7 @@ const FireballScene = preload("res://scenes/fireball.tscn")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
+	add_to_group("enemies")
 	timer.one_shot = true
 	timer.wait_time = rn.randi_range(1, 3)
 	timer.stop()
@@ -26,7 +48,8 @@ func _on_timer_timeout() -> void:
 
 func _on_activate_zone_body_entered(body: Node2D) -> void:
 	animation_player.play("Active")
-	timer.start()
+	if not vulnerable:
+		timer.start()
 
 func _on_activate_zone_body_exited(body: Node2D) -> void:
 	animation_player.play("Idle")

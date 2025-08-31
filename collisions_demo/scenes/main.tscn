@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dx2fcqqpb4i4s"]
+[gd_scene load_steps=9 format=3 uid="uid://dx2fcqqpb4i4s"]
 
 [ext_resource type="PackedScene" uid="uid://bl508xnjg7w4d" path="res://scenes/platform.tscn" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://ehmcsd6vtsfn" path="res://scripts/main.gd" id="1_tbgi4"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dj3ndy0nb2o47" path="res://scenes/door.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dwgryqf8rcart" path="res://scenes/key.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://b3wdwr05px4a6" path="res://scenes/enemy_b.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://ub7pcmbtaeob" path="res://scenes/enemya.tscn" id="7_enemya"]
+[ext_resource type="PackedScene" uid="uid://d37h7625j1dth" path="res://scenes/gem.tscn" id="8_gem"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_tbgi4")
@@ -14,7 +16,7 @@ script = ExtResource("1_tbgi4")
 position = Vector2(348, 138)
 
 [node name="Key" parent="." instance=ExtResource("4_jyhfs")]
-position = Vector2(1032, 239)
+position = Vector2(1230, 158)
 
 [node name="Player" parent="." instance=ExtResource("2_sugp2")]
 position = Vector2(72, 430)
@@ -38,9 +40,15 @@ scale = Vector2(8.13, 1)
 position = Vector2(1164, 358)
 scale = Vector2(8.13, 1)
 
+[node name="EnemyA" parent="World" instance=ExtResource("7_enemya")]
+position = Vector2(1142, 325)
+
 [node name="Platform4" parent="World" instance=ExtResource("1_0wfyh")]
 position = Vector2(580, 174)
 scale = Vector2(8.13, 1)
 
-[node name="EnemyB" parent="." instance=ExtResource("6_tefeu")]
+[node name="EnemyB" parent="World" instance=ExtResource("6_tefeu")]
 position = Vector2(617, 472)
+
+[node name="Gem" parent="World" instance=ExtResource("8_gem")]
+position = Vector2(800, 400)
